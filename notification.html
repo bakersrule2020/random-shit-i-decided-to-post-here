@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification Example</title>
+  <style>
+    .notification {
+      display: none;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  function createNotification(message) {
+    // Create a new notification element
+    var notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerHTML = message;
+
+    // Append the notification to the body
+    document.body.appendChild(notification);
+
+    // Show the notification
+    setTimeout(function () {
+      notification.style.display = 'block';
+    }, 100);
+
+    // Hide the notification after a delay (adjust as needed)
+    setTimeout(function () {
+      notification.style.display = 'none';
+      // Remove the notification element from the DOM after hiding
+      document.body.removeChild(notification);
+    }, 3000); // Adjust the duration as needed
+  }
+
+  // Example: Create and display multiple notifications
+  createNotification('This is notification 1!');
+  createNotification('This is notification 2!');
+  createNotification('This is notification 3!');
+</script>
+
+</body>
+</html>
