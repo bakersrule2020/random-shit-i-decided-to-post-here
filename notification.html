@@ -15,6 +15,11 @@
       color: #fff;
       border-radius: 5px;
       margin-bottom: 10px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .notification.show {
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -30,16 +35,21 @@
     // Append the notification to the body
     document.body.appendChild(notification);
 
+    // Trigger reflow to apply initial style (avoid transition on first show)
+    notification.offsetHeight;
+
     // Show the notification
-    setTimeout(function () {
-      notification.style.display = 'block';
-    }, 100);
+    notification.classList.add('show');
 
     // Hide the notification after a delay (adjust as needed)
     setTimeout(function () {
-      notification.style.display = 'none';
+      // Hide the notification
+      notification.classList.remove('show');
+
       // Remove the notification element from the DOM after hiding
-      document.body.removeChild(notification);
+      setTimeout(function () {
+        document.body.removeChild(notification);
+      }, 300);
     }, 3000); // Adjust the duration as needed
   }
 
